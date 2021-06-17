@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Intro VueJS</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <ul>
+        <li v-for="n in nomes">{{n.nome}}</li>
+      </ul>
+    </div>
+  </body>
+
+  <script>
+    var app = new Vue({
+      el: "#app",
+      data: {
+        nomes: [
+          { nome: "Jão", idade: 25, sexo: "M" },
+          { nome: "Maria", idade: 60, sexo: "F" },
+          { nome: "Zé", idade: 08, sexo: "M" }
+        ],
+        mostrarElemento: true
+      }
+    })
+  </script>
+</html>

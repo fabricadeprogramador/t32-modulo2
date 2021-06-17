@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Intro VueJS</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <input v-bind:type="tipoInput" placeholder="Nome ou Senha" />
+      <input :type="tipoInput" placeholder="Nome ou Senha" />
+
+      <!-- O ":" equivale ao v-bind: -->
+    </div>
+  </body>
+
+  <script>
+    var app = new Vue({
+      el: "#app",
+      data: {
+        tipoInput: "text"
+      }
+    })
+  </script>
+</html>

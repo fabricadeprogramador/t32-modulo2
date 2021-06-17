@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Intro VueJS</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <input type="text" placeholder="Nome" v-model="nomeCorrente" />
+
+      <button @click="adicionar">Adicionar</button>
+
+      <ol>
+        <li v-for="nome in nomes">{{nome}}</li>
+      </ol>
+    </div>
+  </body>
+
+  <script>
+    var app = new Vue({
+      el: "#app",
+      data: {
+        nomes: [],
+        nomeCorrente: ""
+      },
+      methods: {
+        adicionar() {
+          this.nomes.push(this.nomeCorrente)
+          this.nomeCorrente = ""
+        }
+      }
+    })
+  </script>
+</html>
