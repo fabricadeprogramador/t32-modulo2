@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Seletor Cores - HT</title>
+    <link rel="stylesheet" href="css/estilo.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <h1>{{ titulo }}</h1>
+
+      <img :src="carroSelecionado.corPath" alt="" />
+
+      <div>
+        <div>Marca: {{carroSelecionado.marca}}</div>
+
+        <div>Modelo: {{carroSelecionado.modelo}}</div>
+
+        <div>Ano: {{carroSelecionado.ano}}</div>
+
+        <div>Cor: {{carroSelecionado.cor}}</div>
+      </div>
+
+      <div class="grupoCores">
+        <div class="preto" @click="mudarCor('Preto')"></div>
+        <div class="branco" @click="mudarCor('Branco')"></div>
+        <div class="vermelho" @click="mudarCor('Vermelho')"></div>
+      </div>
+
+      <div>
+        <div>Quantidade disponível em preto: {{qtdPreto}}</div>
+        <div>Quantidade disponível em branco: {{qtdBranco}}</div>
+        <div>Quantidade disponível em vermelho: {{qtdVermelho}}</div>
+      </div>
+
+      <button class="botao" @click="comprar">Comprar</button>
+    </div>
+  </body>
+  <script src="js/script.js"></script>
+</html>

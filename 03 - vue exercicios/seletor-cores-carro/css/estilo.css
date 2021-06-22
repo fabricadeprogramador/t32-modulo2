@@ -1,0 +1,55 @@
+body {
+  font-family: sans-serif;
+}
+
+img {
+  width: 500px;
+}
+
+#app {
+  width: 40%;
+  margin: auto;
+  text-align: center;
+}
+
+.botao {
+  padding: 15px;
+  background-color: cornflowerblue;
+  color: white;
+  border: 1px solid black;
+  margin: 10px 0px;
+  cursor: pointer;
+}
+
+.preto {
+  width: 100px;
+  height: 100px;
+  background-color: black;
+  border: 1px solid black;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.branco {
+  width: 100px;
+  height: 100px;
+  background-color: white;
+  border: 1px solid black;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.vermelho {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  border: 1px solid black;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.grupoCores {
+  display: flex;
+  width: 50%;
+  margin: 20px auto;
+}
