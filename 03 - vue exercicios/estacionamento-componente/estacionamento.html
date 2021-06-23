@@ -1,0 +1,62 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="js/script.js"></script>
+    <title>LISTA DE CARROS</title>
+  </head>
+
+  <body>
+    <div class="card">
+      <div>
+        <h2>LISTA DE CARROS</h2>
+      </div>
+      <div class="card-cadastro">
+        <input type="text" placeholder="Nome Do Veiculo" id="nomeVeiculo" />
+        <input type="text" placeholder="Marca Do Veiculo" id="marcaVeiculo" />
+        <input type="number" placeholder="Ano Do Veiculo" id="anoVeiculo" />
+
+        <button onclick="estacionamentoController.salvar()">Salvar</button>
+        <button onclick="estacionamentoController.cancelar()">Cancelar</button>
+        <button onclick="estacionamentoController.calcularResultado()">
+          Resultado
+        </button>
+      </div>
+
+      <div class="card-resultado">
+        <div class="card-tabela">
+          <table>
+            <thead>
+              <th>Nome</th>
+              <th>Marca</th>
+              <th>Ano</th>
+              <th></th>
+              <th></th>
+            </thead>
+            <tbody id="tbody"></tbody>
+          </table>
+        </div>
+
+        <fieldset>
+          <legend>Resultado</legend>
+          <div>
+            <div>
+              <label for="maisVelho">Mais Velho:</label>
+              <span id="maisVelho"></span>
+            </div>
+
+            <div>
+              <label for="maisNovo">Mais Novo:</label>
+              <span id="maisNovo"></span>
+            </div>
+
+            <div>
+              <label for="media">Média:</label>
+              <span id="media"></span>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+  </body>
+</html>

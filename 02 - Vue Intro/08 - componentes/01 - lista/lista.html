@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Lista - Componentes VueJS</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <ol>
+        <!--
+      Agora provemos cada todo-item com o objeto todo que ele
+      representa, de forma que seu conteúdo possa ser dinâmico.
+      Também precisamos prover cada componente com uma "chave",
+      a qual será explicada posteriormente.
+    -->
+        <todo-item
+          v-for="item in listaCompras"
+          :compra="item"
+          :key="item"
+        ></todo-item>
+      </ol>
+    </div>
+  </body>
+  <script>
+    Vue.component("todo-item", {
+      props: ["compra"],
+      template: "<li>{{ compra }}</li>"
+    })
+
+    var app = new Vue({
+      el: "#app",
+      data: {
+        listaCompras: [
+          "Vegetais",
+          "Queijo",
+          "Leite",
+          "Qualquer outra coisa que humanos podem comer"
+        ]
+      }
+    })
+  </script>
+</html>
