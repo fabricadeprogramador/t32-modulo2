@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Cadastro - Componentes VueJS</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <div>Bem-vindo(a), {{cliente}}</div>
+      <div>
+        <input type="text" placeholder="Nome" v-model="pessoaAtual.nome" />
+        <input type="text" placeholder="Idade" v-model="pessoaAtual.idade" />
+        <input type="text" placeholder="Sexo" v-model="pessoaAtual.sexo" />
+
+        <button @click="salvar">Salvar</button>
+      </div>
+
+      ==============================================================================
+      <lista-clientes
+        :itens="pessoas"
+        @exibir-nome-secreto="tratarEventoNomeSecreto"
+      ></lista-clientes>
+    </div>
+  </body>
+  <script>
+    Vue.component("lista-clientes", {
+      props: ["itens"],
+      template: `
+      <div>
+        <ul>
+          <li v-for="item in itens">
+            Nome: {{ item.nome }} | Idade: {{item.idade}} | Sexo: {{item.sexo}}
+          </li>
+        </ul>
+
+        <input type="text" placeholder="Nome Secreto" v-model="nomeSecreto"></input>
+        <button @click="enviarNomeSecreto">Enviar Nome Secreto</button>
+      </div>
+        `,
+      data() {
+        return {
+          nomeSecreto: ""
+        }
+      },
+      methods: {
+        enviarNomeSecreto() {
+          this.$emit("exibir-nome-secreto", this.nomeSecreto)
+        }
+      }
+    })
+
+    var app = new Vue({
+      el: "#app",
+      data() {
+        return {
+          pessoas: [],
+          pessoaAtual: {},
+          cliente: ""
+        }
+      },
+      methods: {
+        salvar() {
+          this.pessoas.push(this.pessoaAtual)
+          this.pessoaAtual = {}
+        },
+
+        tratarEventoNomeSecreto(nome) {
+          this.cliente = nome
+        }
+      }
+    })
+  </script>
+</html>

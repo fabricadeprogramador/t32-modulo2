@@ -7,45 +7,38 @@
   </head>
   <body>
     <div id="app">
-      <div>Bem-vindo(a), {{cliente}}</div>
-      <div>
-        <input type="text" placeholder="Nome" v-model="pessoaAtual.nome" />
-        <input type="text" placeholder="Idade" v-model="pessoaAtual.idade" />
-        <input type="text" placeholder="Sexo" v-model="pessoaAtual.sexo" />
-
-        <button @click="salvar">Salvar</button>
-      </div>
-
-      ==============================================================================
-      <lista-clientes
-        :itens="pessoas"
-        @exibir-nome-secreto="tratarEventoNomeSecreto"
-      ></lista-clientes>
+      <cadastro></cadastro>
     </div>
   </body>
   <script>
-    Vue.component("lista-clientes", {
-      props: ["itens"],
+    Vue.component("cadastro", {
       template: `
-      <div>
-        <ul>
-          <li v-for="item in itens">
-            Nome: {{ item.nome }} | Idade: {{item.idade}} | Sexo: {{item.sexo}}
-          </li>
-        </ul>
+        <div>
+            <input type="text" placeholder="Nome" v-model="pessoaAtual.nome" />
+            <input type="text" placeholder="Idade" v-model="pessoaAtual.idade" />
+            <input type="text" placeholder="Sexo" v-model="pessoaAtual.sexo" />
 
-        <input type="text" placeholder="Nome Secreto" v-model="nomeSecreto"></input>
-        <button @click="enviarNomeSecreto">Enviar Nome Secreto</button>
-      </div>
+            <button @click="salvar">Salvar</button>
+
+            <ol>
+                <ul>
+                <li v-for="pessoa in pessoas">
+                    {{pessoa.nome}} | {{pessoa.idade}} | {{pessoa.sexo}}
+                </li>
+                </ul>
+            </ol>
+        </div>
         `,
       data() {
         return {
-          nomeSecreto: ""
+          pessoaAtual: {},
+          pessoas: []
         }
       },
       methods: {
-        enviarNomeSecreto() {
-          this.$emit("exibir-nome-secreto", this.nomeSecreto)
+        salvar() {
+          this.pessoas.push(this.pessoaAtual)
+          this.pessoaAtual = {}
         }
       }
     })
@@ -53,22 +46,9 @@
     var app = new Vue({
       el: "#app",
       data() {
-        return {
-          pessoas: [],
-          pessoaAtual: {},
-          cliente: ""
-        }
+        return {}
       },
-      methods: {
-        salvar() {
-          this.pessoas.push(this.pessoaAtual)
-          this.pessoaAtual = {}
-        },
-
-        tratarEventoNomeSecreto(nome) {
-          this.cliente = nome
-        }
-      }
+      methods: {}
     })
   </script>
 </html>

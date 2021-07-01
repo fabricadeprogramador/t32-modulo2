@@ -1,0 +1,68 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Lista de Usuários</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <cadastro-cliente
+        :qtd="clientes.length"
+        @novo-cliente="inserirCliente"
+      ></cadastro-cliente>
+
+      ==================================================================
+
+      <ul>
+        <li v-for="cliente in clientes">
+          {{cliente.nome}}, {{cliente.idade}}, {{cliente.sexo}}
+        </li>
+      </ul>
+    </div>
+  </body>
+
+  <script>
+    //Componente Filho
+    Vue.component("cadastro-cliente", {
+      props: ["qtd"],
+      template: `
+            <div>
+                <div> Atualmente temos {{ qtd }} clientes cadastrados</div>
+                <div>
+                    <input type="text" placeholder="Nome" v-model="cliente.nome" />
+                    <input type="numvber" placeholder="Idade" v-model="cliente.idade" />
+                    <input type="text" placeholder="Sexo" v-model="cliente.sexo" />
+
+                    <button @click="salvar">Salvar</button>
+                </div>    
+            </div>
+        `,
+      data() {
+        return {
+          cliente: {}
+        }
+      },
+      methods: {
+        salvar() {
+          this.$emit("novo-cliente", this.cliente)
+          this.cliente = {}
+        }
+      }
+    })
+
+    //Global (Componente Pai)
+    var app = new Vue({
+      el: "#app",
+      data() {
+        return {
+          clientes: []
+        }
+      },
+      methods: {
+        inserirCliente(cliente) {
+          this.clientes.push(cliente)
+        }
+      }
+    })
+  </script>
+</html>
