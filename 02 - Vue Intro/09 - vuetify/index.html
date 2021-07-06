@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css"
+      rel="stylesheet"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
+    />
+  </head>
+  <body>
+    <div id="app">
+      <v-app>
+        <v-main>
+          <v-alert type="success" v-model="alerta" dismissible
+            >{{nome}}, adicionado com sucesso!</v-alert
+          >
+          <v-container>
+            <v-row class="p-14 my-3">
+              <v-col cols="12" sm="6" md="3">
+                <v-text-field
+                  label="Nome"
+                  outlined
+                  v-model="nome"
+                ></v-text-field>
+                <v-btn color="deep-purple darken-2" @click="mostrarNome"
+                  >Exibir Nome</v-btn
+                >
+              </v-col>
+            </v-row>
+          </v-container>
+        </v-main>
+      </v-app>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+    <script>
+      new Vue({
+        el: "#app",
+        vuetify: new Vuetify(),
+        data() {
+          return {
+            nome: "",
+            alerta: false
+          }
+        },
+        methods: {
+          mostrarNome() {
+            this.alerta = true
+            // alert(this.nome)
+          }
+        }
+      })
+    </script>
+  </body>
+</html>
