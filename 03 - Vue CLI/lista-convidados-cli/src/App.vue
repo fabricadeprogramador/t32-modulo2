@@ -18,7 +18,7 @@
 
     <!-- NAVIGATION DRAWER -->
 
-    <div class="ma-12 pa-12">
+    <div>
       <v-card>
         <v-navigation-drawer permanent app color="blue-grey lighten-5">
           <v-row align-center justify-center>
@@ -57,7 +57,7 @@
     </div>
 
     <!-- MAIN CONTENT -->
-    <v-main>
+    <v-main app>
       <router-view />
     </v-main>
   </v-app>
