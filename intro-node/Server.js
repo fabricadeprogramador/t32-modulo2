@@ -63,6 +63,19 @@ class Server {
       res.json(this.convidados)
     })
 
+    this.app.get("/convidado/:id", (req, res) => {
+      let id = req.params.id
+      let convidadoEncontrado = this.convidados.filter((convidado) => {
+        return convidado.id == id
+      })
+
+      if (convidadoEncontrado.length > 0) res.json(convidadoEncontrado[0])
+      else
+        res.status(400).json({
+          error: "Erro ao buscar convidado, ID inválido!"
+        })
+    })
+
     this.app.post("/convidado", (req, res) => {
       let novoConvidado = req.body
       console.log(`Inserindo Novo Convidado: ${JSON.stringify(novoConvidado)}`)
@@ -98,11 +111,27 @@ class Server {
     })
 
     this.app.put("/convidado", (req, res) => {
-      //TODO: Implementar alteração
-      //1 - Verifica se o objeto no corpo já possui ID
-      //2 -  Se não possuir ID, retornar Erro
-      //3 - Se possuir ID, encontrar objeto com esse ID no array e substituir pelo novo (corpo da requisição)
-      //4 - Retorna o objeto antes da alteração
+      let convidadoEdicao = req.body
+
+      if (convidadoEdicao.id) {
+        let index = this.convidados.findIndex((convidado) => {
+          return convidado.id == convidadoEdicao.id
+        })
+
+        if (index >= 0) {
+          let convidadoRetorno = Object.assign({}, this.convidados[index])
+          this.convidados[index] = convidadoEdicao
+          res.json(convidadoRetorno)
+        } else {
+          res.status(400).json({
+            error: "Erro ao editar convidado, ID inválido!"
+          })
+        }
+      } else {
+        res.status(400).json({
+          error: "Erro ao editar convidado, dados faltando!"
+        })
+      }
     })
 
     //Começando a escutar a porta 3000
